@@ -88,7 +88,12 @@ class _DashboardPageState extends State<DashboardPage> {
                         }
                         Result _result = data.upcomingMovieLists[index];
                         return WatchImageViewItem(
-                          onTap: () => _onTap(context),
+                          onTap: () {
+                            Navigator.pushNamed(context, Routes.watchDetails,arguments: {
+                              'id':_result.id,
+                              'data':_result.toJson()
+                            });
+                          },
                           image: RestApi.getImage(_result.posterPath!),
                           text: _result.title!,
                         );
@@ -97,9 +102,5 @@ class _DashboardPageState extends State<DashboardPage> {
         );
       },
     );
-  }
-
-  void _onTap(context) {
-    Navigator.pushNamed(context, Routes.watchDetails);
   }
 }

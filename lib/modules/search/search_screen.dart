@@ -133,8 +133,10 @@ class _SearchScreenState extends State<SearchScreen> {
                                         data.searchMovieLists[index];
                                     return InkWell(
                                       onTap: () {
-                                        Navigator.pushNamed(
-                                            context, Routes.watchDetails);
+                                        Navigator.pushNamed(context, Routes.watchDetails,arguments: {
+                                          'id':_result.id,
+                                          'data':_result.toJson()
+                                        });
                                       },
                                       child: SearchItemView(
                                         image: RestApi.getImage(

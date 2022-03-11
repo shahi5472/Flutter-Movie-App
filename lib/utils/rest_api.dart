@@ -18,4 +18,10 @@ class RestApi {
 
   static searchMovie(String query, int page) =>
       '$_baseUrl/search/movie?api_key=${KString.apiKey}&query=$query&page=$page&include_adult=false';
+
+  static detailsMovie(int movieId) =>
+      '$_baseUrl/movie/$movieId?api_key=${KString.apiKey}';
+
+  static getImageList(int movieId) =>
+      '$_baseUrl/movie/$movieId/images?api_key=${KString.apiKey}';
 }

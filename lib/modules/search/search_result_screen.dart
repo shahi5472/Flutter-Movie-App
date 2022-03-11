@@ -103,7 +103,11 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
                                     return InkWell(
                                       onTap: () {
                                         Navigator.pushNamed(
-                                            context, Routes.watchDetails);
+                                            context, Routes.watchDetails,
+                                            arguments: {
+                                              'id': _result.id,
+                                              'data': _result.toJson()
+                                            });
                                       },
                                       child: SearchItemView(
                                         image: RestApi.getImage(

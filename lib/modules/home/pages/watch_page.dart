@@ -84,7 +84,11 @@ class _WatchPageState extends State<WatchPage> {
                           Result _result = data.topRatedMovieLists[index];
                           return InkWell(
                             onTap: () {
-                              Navigator.pushNamed(context, Routes.watchDetails);
+                              Navigator.pushNamed(context, Routes.watchDetails,
+                                  arguments: {
+                                    'id': _result.id,
+                                    'data': _result.toJson()
+                                  });
                             },
                             child: WatchViewItem(
                               image: RestApi.getImage(_result.posterPath!),

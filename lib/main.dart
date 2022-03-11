@@ -4,6 +4,7 @@ import 'package:flutter_movie_app/controllers/bottom_nav_controller.dart';
 import 'package:flutter_movie_app/controllers/dashboard_controller.dart';
 import 'package:flutter_movie_app/controllers/search_controller.dart';
 import 'package:flutter_movie_app/controllers/watch_controller.dart';
+import 'package:flutter_movie_app/controllers/watch_details_controller.dart';
 import 'package:flutter_movie_app/router_name.dart';
 import 'package:flutter_movie_app/utils/k_strings.dart';
 import 'package:flutter_movie_app/utils/my_theme.dart';
@@ -23,6 +24,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (_) => DashboardController()),
       ChangeNotifierProvider(create: (_) => WatchController()),
       ChangeNotifierProvider(create: (_) => SearchController()),
+      ChangeNotifierProvider(create: (_) => WatchDetailsController()),
     ],
     child: const MyApp(),
   ));

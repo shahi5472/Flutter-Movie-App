@@ -14,3 +14,11 @@ const pinkDeepColor = Color(0xffE26CA5);
 const blueVioletColor = Color(0xff564CA3);
 const darkYellowColor = Color(0xffCD9D0F);
 const seatColor = Color(0xffA6A6A6);
+
+var colors = [
+  pasteColor,
+  pinkDeepColor,
+  blueVioletColor,
+  darkYellowColor,
+  primaryColor
+];
