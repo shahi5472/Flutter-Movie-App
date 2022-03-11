@@ -17,6 +17,7 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        leadingWidth: 0.0,
         title: Row(
           children: [
             IconButton(

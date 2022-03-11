@@ -3,6 +3,7 @@ import 'package:flutter_movie_app/modules/home/components/watch_image_view_item.
 import 'package:flutter_movie_app/router_name.dart';
 import 'package:flutter_movie_app/utils/k_images.dart';
 import 'package:flutter_movie_app/utils/k_strings.dart';
+import 'package:flutter_movie_app/widgets/shimmer_dashboard_loading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -13,6 +14,18 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 10)).then((value) {
+      setState(() {
+        isLoading = false;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,40 +49,45 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
         ],
       ),
-      body: ListView(
-        children: [
-          WatchImageViewItem(
-            onTap: () => _onTap(context),
-            image: 'assets/images/one.png',
-            text: 'Free Guy',
-          ),
-          WatchImageViewItem(
-            onTap: () => _onTap(context),
-            image: 'assets/images/two.png',
-            text: "The King's Man",
-          ),
-          WatchImageViewItem(
-            onTap: () => _onTap(context),
-            image: 'assets/images/three.png',
-            text: 'Jojo Rabbit',
-          ),
-          WatchImageViewItem(
-            onTap: () => _onTap(context),
-            image: 'assets/images/one.png',
-            text: 'Free Guy',
-          ),
-          WatchImageViewItem(
-            onTap: () => _onTap(context),
-            image: 'assets/images/two.png',
-            text: "The King's Man",
-          ),
-          WatchImageViewItem(
-            onTap: () => _onTap(context),
-            image: 'assets/images/three.png',
-            text: 'Jojo Rabbit',
-          ),
-        ],
-      ),
+      body: isLoading
+          ? const ShimmerDashboardLoading(
+              width: double.infinity,
+              height: 180,
+            )
+          : ListView(
+              children: [
+                WatchImageViewItem(
+                  onTap: () => _onTap(context),
+                  image: 'assets/images/one.png',
+                  text: 'Free Guy',
+                ),
+                WatchImageViewItem(
+                  onTap: () => _onTap(context),
+                  image: 'assets/images/two.png',
+                  text: "The King's Man",
+                ),
+                WatchImageViewItem(
+                  onTap: () => _onTap(context),
+                  image: 'assets/images/three.png',
+                  text: 'Jojo Rabbit',
+                ),
+                WatchImageViewItem(
+                  onTap: () => _onTap(context),
+                  image: 'assets/images/one.png',
+                  text: 'Free Guy',
+                ),
+                WatchImageViewItem(
+                  onTap: () => _onTap(context),
+                  image: 'assets/images/two.png',
+                  text: "The King's Man",
+                ),
+                WatchImageViewItem(
+                  onTap: () => _onTap(context),
+                  image: 'assets/images/three.png',
+                  text: 'Jojo Rabbit',
+                ),
+              ],
+            ),
     );
   }
 
