@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie_app/modules/seat/components/custom_seat_appbar.dart';
 import 'package:flutter_movie_app/utils/k_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -23,42 +24,7 @@ class _SeatSelectScreenState extends State<SeatSelectScreen> {
               child: CustomScrollView(
                 shrinkWrap: true,
                 slivers: [
-                  SliverAppBar(
-                    pinned: true,
-                    automaticallyImplyLeading: false,
-                    leading: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.arrow_back_ios,
-                        color: textColor,
-                      ),
-                    ),
-                    toolbarHeight: 80,
-                    flexibleSpace: FlexibleSpaceBar(
-                      background: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'The King’s Man',
-                            style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: textColor,
-                            ),
-                          ),
-                          const SizedBox(height: 6),
-                          Text(
-                            'In theaters december 22, 2021',
-                            style: GoogleFonts.poppins(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: lightBlueColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  const CustomSeatAppBar(),
                   SliverToBoxAdapter(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),

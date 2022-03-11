@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/modules/search/components/search_item_view.dart';
 import 'package:flutter_movie_app/utils/k_colors.dart';
-import 'package:flutter_movie_app/utils/k_images.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SearchResultScreen extends StatefulWidget {
