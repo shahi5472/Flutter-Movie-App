@@ -8,11 +8,20 @@ import 'package:google_fonts/google_fonts.dart';
 class CustomSearchField extends StatelessWidget {
   const CustomSearchField({
     Key? key,
+    this.controller,
+    this.validator,
+    this.onCloseTap,
   }) : super(key: key);
+
+  final TextEditingController? controller;
+  final FormFieldValidator<String>? validator;
+  final VoidCallback? onCloseTap;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
+      validator: validator,
       textInputAction: TextInputAction.search,
       keyboardType: TextInputType.text,
       style: GoogleFonts.poppins(
@@ -22,7 +31,7 @@ class CustomSearchField extends StatelessWidget {
       ),
       decoration: InputDecoration(
         suffixIcon: InkWell(
-          onTap: () {},
+          onTap: onCloseTap,
           child: Padding(
             padding: const EdgeInsets.all(12),
             child: SvgPicture.asset(

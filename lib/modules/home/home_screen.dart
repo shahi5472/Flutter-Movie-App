@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/modules/home/pages/dashboard_page.dart';
+import 'package:flutter_movie_app/modules/home/pages/media_library_screen.dart';
+import 'package:flutter_movie_app/modules/home/pages/more_screen.dart';
 import 'package:flutter_movie_app/modules/home/pages/watch_page.dart';
-import 'package:flutter_movie_app/modules/search/search_result_screen.dart';
-import 'package:flutter_movie_app/modules/search/search_screen.dart';
 import 'package:flutter_movie_app/widgets/custom_bottom_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,8 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> bodyWidgets = const [
     DashboardPage(),
     WatchPage(),
-    SearchScreen(),
-    SearchResultScreen(),
+    MediaLibraryScreen(),
+    MoreScreen(),
   ];
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/modules/search/components/search_item_view.dart';
+import 'package:flutter_movie_app/router_name.dart';
 import 'package:flutter_movie_app/utils/k_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,7 +20,9 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
         title: Row(
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               icon: const Icon(Icons.arrow_back_ios, color: textColor),
             ),
             Text(
@@ -44,7 +47,12 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
                 itemCount: 10,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return const SearchItemView();
+                  return InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.watchDetails);
+                    },
+                    child: const SearchItemView(),
+                  );
                 },
               ),
             )

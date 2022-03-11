@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie_app/modules/seat/components/custom_seat_appbar.dart';
+import 'package:flutter_movie_app/router_name.dart';
 import 'package:flutter_movie_app/utils/k_colors.dart';
 import 'package:flutter_movie_app/utils/k_images.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,8 +17,11 @@ class _SeatDetailsScreenState extends State<SeatDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: const Icon(
             Icons.arrow_back_ios,
             color: textColor,
@@ -223,7 +226,9 @@ class _SeatDetailsScreenState extends State<SeatDetailsScreen> {
                     const SizedBox(width: 10),
                     Flexible(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context, Routes.home);
+                        },
                         child: Text(
                           'Proceed to pay',
                           style: GoogleFonts.poppins(

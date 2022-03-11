@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/modules/seat/components/custom_seat_appbar.dart';
+import 'package:flutter_movie_app/router_name.dart';
 import 'package:flutter_movie_app/utils/k_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -91,7 +92,9 @@ class _SeatSelectScreenState extends State<SeatSelectScreen> {
             Container(
               margin: const EdgeInsets.only(bottom: 26, left: 26, right: 26),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.seatDetails);
+                },
                 child: Text(
                   'Select Seats',
                   style: GoogleFonts.poppins(

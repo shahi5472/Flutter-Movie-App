@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/modules/home/components/watch_view_item.dart';
+import 'package:flutter_movie_app/router_name.dart';
 import 'package:flutter_movie_app/widgets/custom_search_field.dart';
 
 class WatchPage extends StatefulWidget {
@@ -32,7 +33,12 @@ class _WatchPageState extends State<WatchPage> {
             crossAxisSpacing: 10,
           ),
           itemBuilder: (BuildContext context, int index) {
-            return const WatchViewItem();
+            return InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, Routes.watchDetails);
+              },
+              child: const WatchViewItem(),
+            );
           },
         ),
       ),

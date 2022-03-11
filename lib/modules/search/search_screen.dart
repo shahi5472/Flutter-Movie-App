@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/modules/search/components/search_item_view.dart';
+import 'package:flutter_movie_app/router_name.dart';
 import 'package:flutter_movie_app/utils/k_colors.dart';
 import 'package:flutter_movie_app/widgets/custom_search_field.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,8 +17,19 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leadingWidth: 0.0,
         toolbarHeight: kToolbarHeight + 20,
-        title: const CustomSearchField(),
+        title: CustomSearchField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Type Something';
+            }
+            return null;
+          },
+          onCloseTap: () {
+            Navigator.pushNamed(context, Routes.searchResult);
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -44,7 +56,12 @@ class _SearchScreenState extends State<SearchScreen> {
                 itemCount: 10,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return const SearchItemView();
+                  return InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.watchDetails);
+                    },
+                    child: const SearchItemView(),
+                  );
                 },
               ),
             )

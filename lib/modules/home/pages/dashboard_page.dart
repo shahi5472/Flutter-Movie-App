@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/modules/home/components/watch_image_view_item.dart';
+import 'package:flutter_movie_app/router_name.dart';
+import 'package:flutter_movie_app/utils/k_images.dart';
 import 'package:flutter_movie_app/utils/k_strings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -26,8 +28,10 @@ class _DashboardPageState extends State<DashboardPage> {
           Padding(
             padding: const EdgeInsets.only(right: 20, left: 20),
             child: InkWell(
-              onTap: () {},
-              child: SvgPicture.asset('assets/icons/search.svg'),
+              onTap: () {
+                Navigator.pushNamed(context, Routes.search);
+              },
+              child: SvgPicture.asset(Kimage.searchIcon),
             ),
           ),
         ],
@@ -35,37 +39,41 @@ class _DashboardPageState extends State<DashboardPage> {
       body: ListView(
         children: [
           WatchImageViewItem(
-            onTap: () {},
+            onTap: () => _onTap(context),
             image: 'assets/images/one.png',
             text: 'Free Guy',
           ),
           WatchImageViewItem(
-            onTap: () {},
+            onTap: () => _onTap(context),
             image: 'assets/images/two.png',
             text: "The King's Man",
           ),
           WatchImageViewItem(
-            onTap: () {},
+            onTap: () => _onTap(context),
             image: 'assets/images/three.png',
             text: 'Jojo Rabbit',
           ),
           WatchImageViewItem(
-            onTap: () {},
+            onTap: () => _onTap(context),
             image: 'assets/images/one.png',
             text: 'Free Guy',
           ),
           WatchImageViewItem(
-            onTap: () {},
+            onTap: () => _onTap(context),
             image: 'assets/images/two.png',
             text: "The King's Man",
           ),
           WatchImageViewItem(
-            onTap: () {},
+            onTap: () => _onTap(context),
             image: 'assets/images/three.png',
             text: 'Jojo Rabbit',
           ),
         ],
       ),
     );
+  }
+
+  void _onTap(context) {
+    Navigator.pushNamed(context, Routes.watchDetails);
   }
 }

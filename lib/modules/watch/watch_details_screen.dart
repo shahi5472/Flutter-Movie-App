@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie_app/router_name.dart';
 import 'package:flutter_movie_app/utils/k_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,10 +21,13 @@ class _WatchDetailsScreenState extends State<WatchDetailsScreen> {
         shrinkWrap: true,
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             title: Row(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   icon: const Icon(Icons.arrow_back_ios, color: whiteColor),
                 ),
                 Text(
@@ -83,7 +87,9 @@ class _WatchDetailsScreenState extends State<WatchDetailsScreen> {
                         ),
                         const SizedBox(height: 15),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, Routes.selectSeat);
+                          },
                           child: Text(
                             'Get Tickets',
                             style: GoogleFonts.poppins(
