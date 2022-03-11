@@ -32,12 +32,15 @@ class MyTheme {
       suffixIconColor: textColor,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
+        borderSide: const BorderSide(color: Colors.transparent),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
+        borderSide: const BorderSide(color: Colors.transparent),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
+        borderSide: const BorderSide(color: Colors.transparent),
       ),
       fillColor: searchFillColor,
       filled: true,
