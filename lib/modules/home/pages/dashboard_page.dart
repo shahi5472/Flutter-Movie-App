@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/controllers/dashboard_controller.dart';
-import 'package:flutter_movie_app/data/upcoming/upcoming_response_model.dart';
+import 'package:flutter_movie_app/data/movie_db_response_model.dart';
 import 'package:flutter_movie_app/modules/home/components/watch_image_view_item.dart';
 import 'package:flutter_movie_app/router_name.dart';
 import 'package:flutter_movie_app/utils/k_images.dart';

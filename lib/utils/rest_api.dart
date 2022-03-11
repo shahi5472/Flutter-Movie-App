@@ -10,6 +10,6 @@ class RestApi {
 
   static getImage(String image) => _imageBaseUrl + image;
 
-  static upcomingMovie(int page) =>
-      '$_baseUrl/upcoming?api_key=${KString.apiKey}&page=$page';
+  static upcomingMovie(int page) => '$_baseUrl/upcoming?api_key=${KString.apiKey}&page=$page';
+  static topRatedMovie(int page) => '$_baseUrl/top_rated?api_key=${KString.apiKey}&page=$page';
 }

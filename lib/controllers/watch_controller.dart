@@ -4,16 +4,17 @@ import 'package:flutter_movie_app/data/api_response_model.dart';
 import 'package:flutter_movie_app/data/movie_db_response_model.dart';
 import 'package:flutter_movie_app/utils/rest_api.dart';
 
-class DashboardController extends ChangeNotifier {
+class WatchController extends ChangeNotifier {
   int currentPage = 1;
   int totalAvailablePage = 1;
   bool isLoading = true;
   String? errorMessage;
 
-  List<Result> upcomingMovieLists = [];
+  List<Result> topRatedMovieLists = [];
 
   Future<void> loadingData() async {
-    ApiResponseModel result = await ApiService.instance.getMovie(RestApi.upcomingMovie(currentPage));
+    ApiResponseModel result = await ApiService.instance
+        .getMovie(RestApi.topRatedMovie(currentPage));
 
     if (result.error) {
       errorMessage = result.message;
@@ -23,7 +24,7 @@ class DashboardController extends ChangeNotifier {
       MovieDBResponseModel _model = result.list;
       totalAvailablePage = _model.totalPages!;
       if (_model.results != null) {
-        upcomingMovieLists.addAll(_model.results!);
+        topRatedMovieLists.addAll(_model.results!);
       }
     }
 
