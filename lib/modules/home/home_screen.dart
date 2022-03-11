@@ -1,39 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie_app/modules/home/pages/dashboard_page.dart';
-import 'package:flutter_movie_app/modules/home/pages/media_library_screen.dart';
-import 'package:flutter_movie_app/modules/home/pages/more_screen.dart';
-import 'package:flutter_movie_app/modules/home/pages/watch_page.dart';
+import 'package:flutter_movie_app/controllers/bottom_nav_controller.dart';
 import 'package:flutter_movie_app/widgets/custom_bottom_bar.dart';
+import 'package:provider/provider.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;
-
-  List<Widget> bodyWidgets = const [
-    DashboardPage(),
-    WatchPage(),
-    MediaLibraryScreen(),
-    MoreScreen(),
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: bodyWidgets[_currentIndex],
+      body: context.watch<BottomNavController>().getBody(),
       bottomNavigationBar: CustomBottomBar(
         height: 72,
-        currentIndex: _currentIndex,
-        onItemSelected: (value) {
-          setState(() {
-            _currentIndex = value;
-          });
-        },
+        currentIndex: context.watch<BottomNavController>().currentIndex,
+        onItemSelected: context.read<BottomNavController>().onItemSelected,
       ),
     );
   }

@@ -1,5 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/utils/k_colors.dart';
+import 'package:flutter_movie_app/widgets/custom_image_view.dart';
+import 'package:flutter_movie_app/widgets/loading.dart';
+import 'package:shimmer/shimmer.dart';
 
 class WatchImageViewItem extends StatelessWidget {
   const WatchImageViewItem({
@@ -28,11 +32,9 @@ class WatchImageViewItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           child: Stack(
             children: [
-              Image.asset(
-                image,
-                width: double.infinity,
+              CustomImageView(
+                image: image,
                 height: 180,
-                fit: BoxFit.cover,
               ),
               Positioned(
                 bottom: 0,
@@ -48,7 +50,7 @@ class WatchImageViewItem extends StatelessWidget {
                         const Color(0xff000000).withOpacity(1.0),
                         const Color(0xff000000).withOpacity(0.0),
                       ],
-                      stops:const [
+                      stops: const [
                         0.0,
                         0.9,
                       ],

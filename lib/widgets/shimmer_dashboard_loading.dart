@@ -48,17 +48,17 @@ class ShimmerDashboardLoading extends StatelessWidget {
             flex: 4,
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
             ),
           ),
-          // SizedBox(height: 6),
           Flexible(
             flex: 2,
             child: Row(
               children: [
                 Container(
                   margin: const EdgeInsets.only(top: 8),
-                  // height: 120.0,
                   width: 50,
                   decoration: const BoxDecoration(
                     color: Colors.white,
