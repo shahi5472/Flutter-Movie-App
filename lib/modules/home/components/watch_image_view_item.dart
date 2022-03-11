@@ -1,9 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/utils/k_colors.dart';
 import 'package:flutter_movie_app/widgets/custom_image_view.dart';
-import 'package:flutter_movie_app/widgets/loading.dart';
-import 'package:shimmer/shimmer.dart';
 
 class WatchImageViewItem extends StatelessWidget {
   const WatchImageViewItem({

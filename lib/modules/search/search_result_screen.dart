@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/controllers/search_controller.dart';
 import 'package:flutter_movie_app/data/movie_db_response_model.dart';

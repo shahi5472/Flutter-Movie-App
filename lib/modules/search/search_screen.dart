@@ -69,6 +69,7 @@ class _SearchScreenState extends State<SearchScreen> {
             title: CustomSearchField(
               controller: searchEditController,
               onFieldSubmitted: (value) {
+                _controller.clearSearch();
                 Navigator.pushNamed(context, Routes.searchResult, arguments: {
                   'query': value,
                 });

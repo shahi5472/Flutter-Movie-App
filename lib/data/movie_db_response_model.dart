@@ -117,11 +117,11 @@ class Result extends Equatable {
       ];
 }
 
-enum OriginalLanguage { EN, JA }
+enum OriginalLanguage { en, ja }
 
 final originalLanguageValues = EnumValues({
-  "en": OriginalLanguage.EN,
-  "ja": OriginalLanguage.JA,
+  "en": OriginalLanguage.en,
+  "ja": OriginalLanguage.ja,
 });
 
 class EnumValues<T> {

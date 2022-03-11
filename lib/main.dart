@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_movie_app/apiz/api_service.dart';
 import 'package:flutter_movie_app/controllers/bottom_nav_controller.dart';
 import 'package:flutter_movie_app/controllers/dashboard_controller.dart';
 import 'package:flutter_movie_app/controllers/search_controller.dart';
