@@ -10,4 +10,5 @@ class Kimage {
   static const seatIcon = 'assets/icons/seat.svg';
   static const watchIcon = 'assets/icons/watch.svg';
   static const moreIcon = 'assets/icons/more.svg';
+  static const kingManLogo = 'assets/images/king_man_logo.png';
 }

@@ -4,6 +4,7 @@ const primaryColor = Color(0xff2E2739);
 const textColor = Color(0xff202C43);
 const lightWhiteColor = Color(0xffF6F6FA);
 const searchFillColor = Color(0xffF2F2F7);
+const captionTextColor = Color(0xff8F8F8F);
 const whiteColor = Colors.white;
 const darkGreyColor = Color(0xff827D88);
 const lightBlueColor = Color(0xff61C3F2);
