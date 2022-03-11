@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/modules/home/pages/dashboard_page.dart';
 import 'package:flutter_movie_app/modules/home/pages/watch_page.dart';
+import 'package:flutter_movie_app/modules/search/search_result_screen.dart';
 import 'package:flutter_movie_app/modules/search/search_screen.dart';
 import 'package:flutter_movie_app/widgets/custom_bottom_bar.dart';
 
@@ -15,10 +16,10 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
   List<Widget> bodyWidgets = const [
-    SearchScreen(),
-    DashboardPage(),
     DashboardPage(),
     WatchPage(),
+    SearchScreen(),
+    SearchResultScreen(),
   ];
 
   @override

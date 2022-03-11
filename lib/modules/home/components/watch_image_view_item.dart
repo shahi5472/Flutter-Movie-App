@@ -42,11 +42,15 @@ class WatchImageViewItem extends StatelessWidget {
                   height: 70,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
                       colors: [
-                        const Color(0xff000000).withOpacity(0.1),
-                        const Color(0xff000000),
+                        const Color(0xff000000).withOpacity(1.0),
+                        const Color(0xff000000).withOpacity(0.0),
+                      ],
+                      stops:const [
+                        0.0,
+                        0.9,
                       ],
                     ),
                   ),

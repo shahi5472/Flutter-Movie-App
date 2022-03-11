@@ -1,43 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/modules/search/components/search_item_view.dart';
 import 'package:flutter_movie_app/utils/k_colors.dart';
-import 'package:flutter_movie_app/widgets/custom_search_field.dart';
+import 'package:flutter_movie_app/utils/k_images.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+class SearchResultScreen extends StatefulWidget {
+  const SearchResultScreen({Key? key}) : super(key: key);
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  State<SearchResultScreen> createState() => _SearchResultScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _SearchResultScreenState extends State<SearchResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: kToolbarHeight + 20,
-        title: const CustomSearchField(),
+        automaticallyImplyLeading: false,
+        title: Row(
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.arrow_back_ios, color: textColor),
+            ),
+            Text(
+              '3 Results Found',
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
+                color: textColor,
+              ),
+            ),
+          ],
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 30),
-            Text(
-              'Top Results',
-              style: GoogleFonts.poppins(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                color: textColor,
-              ),
-            ),
-            const SizedBox(height: 10),
-            const Divider(
-              thickness: 1,
-              color: Colors.black12,
-            ),
             const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
