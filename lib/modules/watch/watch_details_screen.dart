@@ -84,10 +84,6 @@ class _WatchDetailsScreenState extends State<WatchDetailsScreen> {
                         const SizedBox(height: 15),
                         ElevatedButton(
                           onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            maximumSize: const Size(double.infinity, 50),
-                            minimumSize: const Size(double.infinity, 50),
-                          ),
                           child: Text(
                             'Get Tickets',
                             style: GoogleFonts.poppins(

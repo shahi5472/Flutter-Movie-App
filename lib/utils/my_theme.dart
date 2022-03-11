@@ -17,6 +17,8 @@ class MyTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         primary: lightBlueColor,
+        maximumSize: const Size(double.infinity, 50),
+        minimumSize: const Size(double.infinity, 50),
         textStyle: GoogleFonts.poppins(
           fontSize: 16,
           fontWeight: FontWeight.w600,
