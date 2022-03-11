@@ -59,7 +59,7 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
             actions: [
               Padding(
-                padding: const EdgeInsets.only(right: 20, left: 20),
+                padding: const EdgeInsets.all(20),
                 child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, Routes.search);

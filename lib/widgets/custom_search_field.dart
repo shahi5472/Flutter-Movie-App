@@ -11,11 +11,15 @@ class CustomSearchField extends StatelessWidget {
     this.controller,
     this.validator,
     this.onCloseTap,
+    this.onChanged,
+    this.onFieldSubmitted,
   }) : super(key: key);
 
   final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
   final VoidCallback? onCloseTap;
+  final ValueChanged<String>? onChanged;
+  final ValueChanged<String>? onFieldSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +28,8 @@ class CustomSearchField extends StatelessWidget {
       validator: validator,
       textInputAction: TextInputAction.search,
       keyboardType: TextInputType.text,
+      onChanged: onChanged,
+      onFieldSubmitted: onFieldSubmitted,
       style: GoogleFonts.poppins(
         color: textColor,
         fontWeight: FontWeight.w400,

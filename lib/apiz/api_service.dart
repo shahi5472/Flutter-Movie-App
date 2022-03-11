@@ -11,8 +11,11 @@ class ApiService {
   static ApiService get instance => ApiService._();
 
   Future<ApiResponseModel> getMovie(String url) async {
+    print(url);
     try {
       http.Response response = await http.get(Uri.parse(url));
+
+      print(response.body);
 
       if (response.statusCode == 200) {
         MovieDBResponseModel result = movieDBResponseModelFromJson(response.body);

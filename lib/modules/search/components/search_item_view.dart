@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/utils/k_colors.dart';
 import 'package:flutter_movie_app/utils/k_images.dart';
+import 'package:flutter_movie_app/widgets/custom_image_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SearchItemView extends StatelessWidget {
   const SearchItemView({
     Key? key,
+    required this.image,
+    required this.title,
+    this.caption,
   }) : super(key: key);
+
+  final String image;
+  final String title;
+  final String? caption;
 
   @override
   Widget build(BuildContext context) {
@@ -17,22 +25,23 @@ class SearchItemView extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-              'assets/images/one.png',
-              fit: BoxFit.cover,
+            child: CustomImageView(
               height: 100,
               width: 130,
+              image: image,
             ),
           ),
           Expanded(
             child: Row(
               children: [
                 const SizedBox(width: 20),
-                Column(
+                Expanded(child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Timeless',
+                      title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.poppins(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -41,7 +50,9 @@ class SearchItemView extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Fantasy',
+                      caption ?? '',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.poppins(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
@@ -49,8 +60,7 @@ class SearchItemView extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-                const Spacer(),
+                ),),
                 SvgPicture.asset(Kimage.horizontalDotIcon),
               ],
             ),
