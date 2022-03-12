@@ -49,26 +49,7 @@ class _DashboardPageState extends State<DashboardPage> {
     return Consumer<DashboardController>(
       builder: (context, data, child) {
         return Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              KString.watch,
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 16,
-              ),
-            ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, Routes.search);
-                  },
-                  child: SvgPicture.asset(Kimage.searchIcon),
-                ),
-              ),
-            ],
-          ),
+          appBar: _appBar(),
           body: data.isLoading
               ? const ShimmerDashboardLoading(
                   width: double.infinity,
@@ -78,27 +59,53 @@ class _DashboardPageState extends State<DashboardPage> {
                   ? ErrorView(
                       message: data.errorMessage!,
                       onPressed: () => data.loadingData())
-                  : ListView.builder(
-                      shrinkWrap: true,
-                      controller: scrollController,
-                      itemCount: data.upcomingMovieLists.length + 1,
-                      itemBuilder: (BuildContext context, int index) {
-                        if (index == data.upcomingMovieLists.length) {
-                          return const Loading();
-                        }
-                        Result _result = data.upcomingMovieLists[index];
-                        return WatchImageViewItem(
-                          onTap: () {
-                            Navigator.pushNamed(context, Routes.watchDetails,arguments: {
-                              'id':_result.id,
-                              'data':_result.toJson()
-                            });
-                          },
-                          image: RestApi.getImage(_result.posterPath!),
-                          text: _result.title!,
-                        );
-                      },
-                    ),
+                  : _view(data),
+        );
+      },
+    );
+  }
+
+  AppBar _appBar() {
+    return AppBar(
+      leadingWidth: 0.0,
+      title: const Text(
+        KString.watch,
+        style: TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+        ),
+      ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, Routes.search);
+            },
+            child: SvgPicture.asset(Kimage.searchIcon),
+          ),
+        ),
+      ],
+    );
+  }
+
+  ListView _view(data) {
+    return ListView.builder(
+      shrinkWrap: true,
+      controller: scrollController,
+      itemCount: data.upcomingMovieLists.length + 1,
+      itemBuilder: (BuildContext context, int index) {
+        if (index == data.upcomingMovieLists.length) {
+          return const Loading();
+        }
+        Result _result = data.upcomingMovieLists[index];
+        return WatchImageViewItem(
+          onTap: () {
+            Navigator.pushNamed(context, Routes.watchDetails,
+                arguments: {'id': _result.id, 'data': _result.toJson()});
+          },
+          image: RestApi.getImage(_result.posterPath!),
+          text: _result.title!,
         );
       },
     );

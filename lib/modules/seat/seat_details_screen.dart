@@ -28,6 +28,7 @@ class _SeatDetailsScreenState extends State<SeatDetailsScreen> {
           ),
         ),
         toolbarHeight: 80,
+        centerTitle: true,
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -55,6 +55,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void dispose() {
     _dbouncer!.cancel();
+    _controller.clearSearch();
     super.dispose();
   }
 
@@ -63,96 +64,105 @@ class _SearchScreenState extends State<SearchScreen> {
     return Consumer<SearchController>(
       builder: (context, data, child) {
         return Scaffold(
-          appBar: AppBar(
-            leadingWidth: 0.0,
-            toolbarHeight: kToolbarHeight + 20,
-            title: CustomSearchField(
-              controller: searchEditController,
-              onFieldSubmitted: (value) {
-                _controller.clearSearch();
-                Navigator.pushNamed(context, Routes.searchResult, arguments: {
-                  'query': value,
-                });
-              },
-              onChanged: (String s) {
-                if (_dbouncer?.isActive ?? false) _dbouncer?.cancel();
-                _dbouncer = Timer(const Duration(seconds: 1), () {
-                  _controller.searching();
-                  search();
-                });
-              },
-              onCloseTap: () {
-                searchEditController.clear();
-                _controller.clearSearch();
-              },
-            ),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 30),
-                Text(
-                  'Top Results',
-                  style: GoogleFonts.poppins(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: textColor,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                const Divider(
-                  thickness: 1,
-                  color: Colors.black12,
-                ),
-                const SizedBox(height: 20),
-                data.isLoading
-                    ? const Expanded(
-                        child: ShimmerDashboardLoading(
-                          width: double.infinity,
-                          height: 180,
-                        ),
-                      )
-                    : data.errorMessage != null
-                        ? ErrorView(
-                            message: data.errorMessage!,
-                            onPressed: () => search())
-                        : data.searchMovieLists.isEmpty
-                            ? const SizedBox()
-                            : Expanded(
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  controller: scrollController,
-                                  itemCount: data.searchMovieLists.length + 1,
-                                  itemBuilder: (context, index) {
-                                    if (index == data.searchMovieLists.length) {
-                                      return const Loading();
-                                    }
-                                    Result _result =
-                                        data.searchMovieLists[index];
-                                    return InkWell(
-                                      onTap: () {
-                                        Navigator.pushNamed(context, Routes.watchDetails,arguments: {
-                                          'id':_result.id,
-                                          'data':_result.toJson()
-                                        });
-                                      },
-                                      child: SearchItemView(
-                                        image: RestApi.getImage(
-                                            _result.posterPath!),
-                                        title: _result.title!,
-                                        caption: _result.releaseDate,
-                                      ),
-                                    );
-                                  },
-                                ),
-                              )
-              ],
-            ),
-          ),
+          appBar: _appBar(),
+          body: _body(data),
         );
       },
+    );
+  }
+
+  AppBar _appBar() {
+    return AppBar(
+      leadingWidth: 0.0,
+      toolbarHeight: kToolbarHeight + 20,
+      title: CustomSearchField(
+        controller: searchEditController,
+        onFieldSubmitted: (value) {
+          _controller.clearSearch();
+          Navigator.pushNamed(context, Routes.searchResult, arguments: {
+            'query': value,
+          });
+        },
+        onChanged: (String s) {
+          if (_dbouncer?.isActive ?? false) _dbouncer?.cancel();
+          _dbouncer = Timer(const Duration(seconds: 1), () {
+            _controller.clearSearch();
+            _controller.searching();
+            search();
+          });
+        },
+        onCloseTap: () {
+          _controller.clearSearch();
+          searchEditController.clear();
+          _controller.clearSearch();
+        },
+      ),
+    );
+  }
+
+  Padding _body(data) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 30),
+          Text(
+            'Top Results',
+            style: GoogleFonts.poppins(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: textColor,
+            ),
+          ),
+          const SizedBox(height: 10),
+          const Divider(
+            thickness: 1,
+            color: Colors.black12,
+          ),
+          const SizedBox(height: 20),
+          data.isLoading
+              ? const Expanded(
+                  child: ShimmerDashboardLoading(
+                    width: double.infinity,
+                    height: 180,
+                  ),
+                )
+              : data.errorMessage != null
+                  ? ErrorView(
+                      message: data.errorMessage!, onPressed: () => search())
+                  : data.searchMovieLists.isEmpty
+                      ? const SizedBox()
+                      : _view(data)
+        ],
+      ),
+    );
+  }
+
+  Expanded _view(data) {
+    return Expanded(
+      child: ListView.builder(
+        shrinkWrap: true,
+        controller: scrollController,
+        itemCount: data.searchMovieLists.length + 1,
+        itemBuilder: (context, index) {
+          if (index == data.searchMovieLists.length) {
+            return const Loading();
+          }
+          Result _result = data.searchMovieLists[index];
+          return InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, Routes.watchDetails,
+                  arguments: {'id': _result.id, 'data': _result.toJson()});
+            },
+            child: SearchItemView(
+              image: RestApi.getImage(_result.posterPath!),
+              title: _result.title!,
+              caption: _result.releaseDate,
+            ),
+          );
+        },
+      ),
     );
   }
 }

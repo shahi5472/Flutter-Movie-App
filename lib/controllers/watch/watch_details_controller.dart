@@ -45,4 +45,11 @@ class WatchDetailsController extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  void clear() {
+    isDetailsLoading = true;
+    errorMessage = null;
+    model = MovieDetailsResponseModel();
+    backdrops = [];
+  }
 }

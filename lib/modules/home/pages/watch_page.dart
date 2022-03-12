@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie_app/controllers/watch_controller.dart';
+import 'package:flutter_movie_app/controllers/watch/watch_controller.dart';
 import 'package:flutter_movie_app/data/movie_db_response_model.dart';
 import 'package:flutter_movie_app/modules/home/components/watch_view_item.dart';
 import 'package:flutter_movie_app/router_name.dart';
@@ -47,10 +47,7 @@ class _WatchPageState extends State<WatchPage> {
     return Consumer<WatchController>(
       builder: (context, data, child) {
         return Scaffold(
-          appBar: AppBar(
-            toolbarHeight: kToolbarHeight + 20,
-            title: const CustomSearchField(),
-          ),
+          appBar: _appBar(),
           body: data.isLoading
               ? const ShimmerDashboardLoading(
                   width: double.infinity,
@@ -62,44 +59,53 @@ class _WatchPageState extends State<WatchPage> {
                   ? ErrorView(
                       message: data.errorMessage!,
                       onPressed: () => data.loadingData())
-                  : Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: GridView.builder(
-                        shrinkWrap: true,
-                        controller: scrollController,
-                        itemCount: data.topRatedMovieLists.length + 1,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: MediaQuery.of(context).orientation ==
-                                  Orientation.landscape
-                              ? 4
-                              : 2,
-                          mainAxisExtent: 100,
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 10,
-                        ),
-                        itemBuilder: (BuildContext context, int index) {
-                          if (index == data.topRatedMovieLists.length) {
-                            return const Loading();
-                          }
-                          Result _result = data.topRatedMovieLists[index];
-                          return InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(context, Routes.watchDetails,
-                                  arguments: {
-                                    'id': _result.id,
-                                    'data': _result.toJson()
-                                  });
-                            },
-                            child: WatchViewItem(
-                              image: RestApi.getImage(_result.posterPath!),
-                              text: _result.title!,
-                            ),
-                          );
-                        },
-                      ),
-                    ),
+                  : _view(data),
         );
       },
+    );
+  }
+
+  _appBar() {
+    return AppBar(
+      leadingWidth: 0.0,
+      toolbarHeight: kToolbarHeight + 20,
+      title: const CustomSearchField(),
+    );
+  }
+
+  _view(data) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: GridView.builder(
+        shrinkWrap: true,
+        controller: scrollController,
+        itemCount: data.topRatedMovieLists.length + 1,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount:
+              MediaQuery.of(context).orientation == Orientation.landscape
+                  ? 4
+                  : 2,
+          mainAxisExtent: 100,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+        ),
+        itemBuilder: (BuildContext context, int index) {
+          if (index == data.topRatedMovieLists.length) {
+            return const Loading();
+          }
+          Result _result = data.topRatedMovieLists[index];
+          return InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, Routes.watchDetails,
+                  arguments: {'id': _result.id, 'data': _result.toJson()});
+            },
+            child: WatchViewItem(
+              image: RestApi.getImage(_result.posterPath!),
+              text: _result.title!,
+            ),
+          );
+        },
+      ),
     );
   }
 }

@@ -65,7 +65,7 @@ class MovieDetailsResponseModel {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     belongsToCollection = json['belongs_to_collection'] != null
-        ? BelongsToCollection.fromJson(json['belongsToCollection'])
+        ? BelongsToCollection.fromJson(json['belongs_to_collection'])
         : null;
     budget = json['budget'];
     if (json['genres'] != null) {
@@ -204,6 +204,11 @@ class ProductionCountries {
 }
 
 class ProductionCompanies {
+  int? id;
+  String? logoPath;
+  String? name;
+  String? originCountry;
+
   ProductionCompanies({
     this.id,
     this.logoPath,
@@ -217,11 +222,6 @@ class ProductionCompanies {
     name = json['name'];
     originCountry = json['origin_country'];
   }
-
-  int? id;
-  String? logoPath;
-  String? name;
-  String? originCountry;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

@@ -38,6 +38,7 @@ class ApiService {
   }
 
   Future<ApiResponseModel> getMovieDetails(String url) async {
+    print(url);
     try {
       http.Response response = await http.get(Uri.parse(url));
 
@@ -53,16 +54,19 @@ class ApiService {
         );
       }
     } on SocketException catch (e) {
+      print(e.message);
       return ApiResponseModel(
         error: true,
         message: 'Socket Exception ${e.message}',
       );
     } catch (e) {
+      print(e);
       return ApiResponseModel(error: true, message: 'Exception $e');
     }
   }
 
   Future<ApiResponseModel> getImageList(String url) async {
+    print(url);
     try {
       http.Response response = await http.get(Uri.parse(url));
 
