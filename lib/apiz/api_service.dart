@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:api_cache_manager/api_cache_manager.dart';
+import 'package:api_cache_manager/models/cache_db_model.dart';
 import 'package:flutter_movie_app/data/api_response_model.dart';
 import 'package:flutter_movie_app/data/image_response_model.dart';
 import 'package:flutter_movie_app/data/movie_db_response_model.dart';
@@ -12,13 +14,17 @@ class ApiService {
 
   static ApiService get instance => ApiService._();
 
-  Future<ApiResponseModel> getMovie(String url) async {
+  Future<ApiResponseModel> getMovie(String url, {String? cacheKey}) async {
     try {
       http.Response response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
         MovieDBResponseModel result =
             movieDBResponseModelFromJson(response.body);
+
+        if (cacheKey != null) {
+          _updateCache(response.body, cacheKey);
+        }
 
         return ApiResponseModel(error: false, list: result);
       } else {
@@ -28,6 +34,19 @@ class ApiService {
         );
       }
     } on SocketException catch (e) {
+      if (cacheKey != null) {
+        final isExist = await APICacheManager().isAPICacheKeyExist(cacheKey);
+        if (isExist) {
+          var cashData = await APICacheManager().getCacheData(cacheKey);
+          MovieDBResponseModel cacheResult =
+              movieDBResponseModelFromJson(cashData.syncData);
+          return ApiResponseModel(error: false, list: cacheResult);
+        }
+        return ApiResponseModel(
+          error: true,
+          message: 'Socket Exception ${e.message}',
+        );
+      }
       return ApiResponseModel(
         error: true,
         message: 'Socket Exception ${e.message}',
@@ -38,7 +57,6 @@ class ApiService {
   }
 
   Future<ApiResponseModel> getMovieDetails(String url) async {
-    print(url);
     try {
       http.Response response = await http.get(Uri.parse(url));
 
@@ -54,19 +72,16 @@ class ApiService {
         );
       }
     } on SocketException catch (e) {
-      print(e.message);
       return ApiResponseModel(
         error: true,
         message: 'Socket Exception ${e.message}',
       );
     } catch (e) {
-      print(e);
       return ApiResponseModel(error: true, message: 'Exception $e');
     }
   }
 
   Future<ApiResponseModel> getImageList(String url) async {
-    print(url);
     try {
       http.Response response = await http.get(Uri.parse(url));
 
@@ -88,5 +103,14 @@ class ApiService {
     } catch (e) {
       return ApiResponseModel(error: true, message: 'Exception $e');
     }
+  }
+
+  Future<void> _updateCache(String body, String key) async {
+    APICacheDBModel cacheDBModel = APICacheDBModel(
+      key: key,
+      syncData: body,
+    );
+
+    await APICacheManager().addCacheData(cacheDBModel);
   }
 }

@@ -20,4 +20,7 @@ class KString {
   static const proceedToPay = "Proceed To Pay";
 
   static const apiKey = "af2ecd0f211c5d47b757dc0961c6015b";
+
+  static const upcomingMovie = 'upcoming_movie';
+  static const topRatedMovie = 'top_rated_movie';
 }

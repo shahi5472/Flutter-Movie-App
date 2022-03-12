@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/apiz/api_service.dart';
 import 'package:flutter_movie_app/data/api_response_model.dart';
 import 'package:flutter_movie_app/data/movie_db_response_model.dart';
+import 'package:flutter_movie_app/utils/k_strings.dart';
 import 'package:flutter_movie_app/utils/rest_api.dart';
 
 class WatchController extends ChangeNotifier {
@@ -13,8 +14,9 @@ class WatchController extends ChangeNotifier {
   List<Result> topRatedMovieLists = [];
 
   Future<void> loadingData() async {
-    ApiResponseModel result = await ApiService.instance
-        .getMovie(RestApi.topRatedMovie(currentPage));
+    ApiResponseModel result = await ApiService.instance.getMovie(
+        RestApi.topRatedMovie(currentPage),
+        cacheKey: KString.topRatedMovie);
 
     if (result.error) {
       errorMessage = result.message;

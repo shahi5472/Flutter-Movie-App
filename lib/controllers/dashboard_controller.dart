@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/apiz/api_service.dart';
 import 'package:flutter_movie_app/data/api_response_model.dart';
 import 'package:flutter_movie_app/data/movie_db_response_model.dart';
+import 'package:flutter_movie_app/utils/k_strings.dart';
 import 'package:flutter_movie_app/utils/rest_api.dart';
 
 class DashboardController extends ChangeNotifier {
@@ -13,7 +14,9 @@ class DashboardController extends ChangeNotifier {
   List<Result> upcomingMovieLists = [];
 
   Future<void> loadingData() async {
-    ApiResponseModel result = await ApiService.instance.getMovie(RestApi.upcomingMovie(currentPage));
+    ApiResponseModel result = await ApiService.instance.getMovie(
+        RestApi.upcomingMovie(currentPage),
+        cacheKey: KString.upcomingMovie);
 
     if (result.error) {
       errorMessage = result.message;
