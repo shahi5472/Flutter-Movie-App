@@ -1,16 +1,62 @@
 # Flutter Movie App
 
-A new Flutter project.
+[Download Apk](https://drive.google.com/file/d/1Bre6gz8XWgDJuRnwyzPwVn7ZMZr8TBOr/view?usp=sharing)
 
-## Getting Started
+<br>
 
-This project is a starting point for a Flutter application.
+[Demo App Video](https://drive.google.com/file/d/1M9Am84OuhczF9rblkHWa-OXYC61GA-UK/view)
 
-A few resources to get you started if this is your first Flutter project:
+<br>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+[Code Structure Video](https://youtu.be/IfLQQcxKg1U)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Project Features
+
+The features I'm implemented. Those are -
+
+- [Load Upcoming movie list]
+- [Load top rated movie list]
+- [Searching movie by keywords]
+- [Get movie details]
+- [Load images by movie id]
+- [Animated UI]
+- [Cache Data]
+
+<br>
+
+## Dependencies
+
+- Provider (For state management)
+- Cached network image
+- Shimmer
+- Equatable
+- Flutter SVG
+- Google Fonts
+- Carousel Slider
+- Api Cache Manager
+- Animate do
+- HTTP
+
+<br>
+
+## Screenshots
+
+<img src="screenshots/movie_one.jpg" width="200" height="400" />
+
+<img src="screenshots/movie_two.jpg" width="200" height="400" />
+
+<img src="screenshots/movie_three.jpg" width="200" height="400" />
+
+<img src="screenshots/movie_four.jpg" width="200" height="400" />
+
+<img src="screenshots/movie_five.jpg" width="200" height="400" />
+
+<img src="screenshots/movie_six.jpg" width="200" height="400" />
+
+<img src="screenshots/movie_seven.jpg" width="200" height="400" />
+
+<img src="screenshots/movie_eight.jpg" width="200" height="400" />
+
+<img src="screenshots/movie_nine.jpg" width="200" height="400" />
+
+<img src="screenshots/movie_ten.jpg" width="200" height="400" />
