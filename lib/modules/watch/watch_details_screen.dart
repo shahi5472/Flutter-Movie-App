@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/controllers/watch/watch_details_controller.dart';
@@ -143,37 +144,39 @@ class _WatchDetailsScreenState extends State<WatchDetailsScreen> {
                   bottom: 34,
                   left: 66,
                   right: 66,
-                  child: Column(
-                    children: [
-                      Image.asset('assets/images/king_man_logo.png'),
-                      const SizedBox(height: 6),
-                      Text(
-                        'In theaters ${formatDate(data.model.releaseDate ?? DateTime.now().toString())}',
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: whiteColor,
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, Routes.selectSeat);
-                        },
-                        child: Text(
-                          'Get Tickets',
+                  child: SlideInDown(
+                    child: Column(
+                      children: [
+                        Image.asset('assets/images/king_man_logo.png'),
+                        const SizedBox(height: 6),
+                        Text(
+                          'In theaters ${formatDate(data.model.releaseDate ?? DateTime.now().toString())}',
+                          textAlign: TextAlign.center,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.poppins(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
                             color: whiteColor,
                           ),
                         ),
-                      ),
-                      const WatchTrailerButton(),
-                    ],
+                        const SizedBox(height: 15),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, Routes.selectSeat);
+                          },
+                          child: Text(
+                            'Get Tickets',
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: whiteColor,
+                            ),
+                          ),
+                        ),
+                        const WatchTrailerButton(),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -181,57 +184,59 @@ class _WatchDetailsScreenState extends State<WatchDetailsScreen> {
           ),
         ),
         SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 27),
-                Text(
-                  'Genres',
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                    color: textColor,
-                  ),
-                ),
-                if (data.model.genres != null)
-                  Wrap(
-                    spacing: 5,
-                    children: List.generate(
-                      data.model.genres!.take(5).length,
-                      (index) => _buildChip(
-                        data.model.genres![index].name!,
-                        colors[index],
-                      ),
+          child: SlideInUp(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 27),
+                  Text(
+                    'Genres',
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      color: textColor,
                     ),
                   ),
-                const SizedBox(height: 22),
-                const Divider(
-                  thickness: 1,
-                  color: Colors.black12,
-                ),
-                const SizedBox(height: 15),
-                Text(
-                  'Overview',
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                    color: textColor,
+                  if (data.model.genres != null)
+                    Wrap(
+                      spacing: 5,
+                      children: List.generate(
+                        data.model.genres!.take(5).length,
+                        (index) => _buildChip(
+                          data.model.genres![index].name!,
+                          colors[index],
+                        ),
+                      ),
+                    ),
+                  const SizedBox(height: 22),
+                  const Divider(
+                    thickness: 1,
+                    color: Colors.black12,
                   ),
-                ),
-                const SizedBox(height: 15),
-                Text(
-                  data.model.overview ?? '',
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 12,
-                    color: captionTextColor,
-                    height: 1.7,
+                  const SizedBox(height: 15),
+                  Text(
+                    'Overview',
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      color: textColor,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 15),
-              ],
+                  const SizedBox(height: 15),
+                  Text(
+                    data.model.overview ?? '',
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12,
+                      color: captionTextColor,
+                      height: 1.7,
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                ],
+              ),
             ),
           ),
         ),
