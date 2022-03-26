@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: KString.appName,
       theme: MyTheme.theme,
+      themeMode: ThemeMode.light,
       initialRoute: Routes.home,
       routes: Routes.routes,
     );

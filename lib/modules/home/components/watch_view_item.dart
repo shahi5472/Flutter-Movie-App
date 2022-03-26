@@ -19,7 +19,10 @@ class WatchViewItem extends StatelessWidget {
       borderRadius: const BorderRadius.all(Radius.circular(10)),
       child: Stack(
         children: [
-          CustomImageView(image: image, height: 100),
+          Hero(
+            tag: text,
+            child: CustomImageView(image: image, height: 100),
+          ),
           Container(color: Colors.black12.withOpacity(0.3)),
           Positioned(
             bottom: 10,

@@ -25,10 +25,13 @@ class SearchItemView extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: CustomImageView(
-              height: 100,
-              width: 130,
-              image: image,
+            child: Hero(
+              tag: title,
+              child: CustomImageView(
+                height: 100,
+                width: 130,
+                image: image,
+              ),
             ),
           ),
           Expanded(

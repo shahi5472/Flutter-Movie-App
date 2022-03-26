@@ -111,75 +111,78 @@ class _WatchDetailsScreenState extends State<WatchDetailsScreen> {
           ),
           expandedHeight: _size.height * 0.6,
           flexibleSpace: FlexibleSpaceBar(
-            background: Stack(
-              children: [
-                CarouselSlider(
-                  items: List.generate(data.backdrops.take(5).length, (index) {
-                    return CustomImageView(
-                      image: RestApi.getImage(
-                        data.backdrops[index].filePath ?? '',
+            background: Hero(
+              tag: _result.title!,
+              child: Stack(
+                children: [
+                  CarouselSlider(
+                    items: List.generate(data.backdrops.take(5).length, (index) {
+                      return CustomImageView(
+                        image: RestApi.getImage(
+                          data.backdrops[index].filePath ?? '',
+                        ),
+                        height: _size.height * 0.6,
+                      );
+                    }),
+                    options: options,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          const Color(0xff000000).withOpacity(0.9),
+                          const Color(0xff000000).withOpacity(0.0),
+                        ],
+                        stops: const [
+                          0.0,
+                          0.9,
+                        ],
                       ),
-                      height: _size.height * 0.6,
-                    );
-                  }),
-                  options: options,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                      colors: [
-                        const Color(0xff000000).withOpacity(0.9),
-                        const Color(0xff000000).withOpacity(0.0),
-                      ],
-                      stops: const [
-                        0.0,
-                        0.9,
-                      ],
                     ),
                   ),
-                ),
-                Positioned(
-                  bottom: 34,
-                  left: 66,
-                  right: 66,
-                  child: SlideInDown(
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/king_man_logo.png'),
-                        const SizedBox(height: 6),
-                        Text(
-                          'In theaters ${formatDate(data.model.releaseDate ?? DateTime.now().toString())}',
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: whiteColor,
-                          ),
-                        ),
-                        const SizedBox(height: 15),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, Routes.selectSeat);
-                          },
-                          child: Text(
-                            'Get Tickets',
+                  Positioned(
+                    bottom: 34,
+                    left: 66,
+                    right: 66,
+                    child: SlideInDown(
+                      child: Column(
+                        children: [
+                          Image.asset('assets/images/king_man_logo.png'),
+                          const SizedBox(height: 6),
+                          Text(
+                            'In theaters ${formatDate(data.model.releaseDate ?? DateTime.now().toString())}',
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                             style: GoogleFonts.poppins(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
                               color: whiteColor,
                             ),
                           ),
-                        ),
-                        const WatchTrailerButton(),
-                      ],
+                          const SizedBox(height: 15),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, Routes.selectSeat);
+                            },
+                            child: Text(
+                              'Get Tickets',
+                              style: GoogleFonts.poppins(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: whiteColor,
+                              ),
+                            ),
+                          ),
+                          const WatchTrailerButton(),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
