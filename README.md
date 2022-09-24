@@ -1,5 +1,11 @@
 # Flutter Movie App
 
+<br>
+
+<a href="https://www.buymeacoffee.com/smkamal" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+<br>
+
 [Download Apk](https://drive.google.com/file/d/1Bre6gz8XWgDJuRnwyzPwVn7ZMZr8TBOr/view?usp=sharing)
 
 <br>
